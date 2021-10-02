@@ -1,0 +1,8 @@
+# ignore scratch .py file
+leetCodeTest.py
+
+# ignore progress tracking document
+LeetCode DSA Study Records.xlsx
+
+# ignore programming cache
+/__pycache__/* 
