@@ -27,7 +27,7 @@ class Print:
         stack = [root]                                          # create a stack and initialize it by containing the root
         res = []
         while stack:
-            node = stack.pop()                                  # FILO  
+            node = stack.pop()                                  # LIFO  
             res.append(node.val)
             
             if node.left:
