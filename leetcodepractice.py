@@ -1,9 +1,10 @@
-class Print():
+from collections import deque
+
+class Print:
     def TreeTraversalBFS(self, root):
         """
         Collect all elements in tree by breadth-first traversal algorithm (Root -> Level 1 -> Level 2 -> ... -> Level n)
         """
-        from collections import deque
         
         if not root: return []
 
