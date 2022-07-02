@@ -7,6 +7,3 @@ LeetCode DSA Study Records.xlsx
 
 # ignore programming cache
 /__pycache__/* 
-
-# ignore .gitignore
-.gitignore
