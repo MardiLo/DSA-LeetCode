@@ -1,89 +1,57 @@
 from collections import deque
 
 class Print:
-    def TreeTraversalBFS(self, root):
-        """
-        Collect all elements in tree by breadth-first traversal algorithm (Root -> Level 1 -> Level 2 -> ... -> Level n)
-        """
+    def TreeTraversalBFS(self, root) -> list:
+        """Collect all elements in tree by breadth-first traversal algorithm (Root -> Level 1 -> Level 2 -> ... -> Level n)"""
         
         if not root: return []
 
-        queue = deque([root])                                   # create a queue and initialize it by containing the root
-        res = []
+        queue, res = deque([root]), []                          # create a queue and initialize it by containing the root
         while queue:
-            node = queue.popleft()                              # FIFO  
-            res.append(node.val)
+            root = queue.popleft()                              # FIFO  
+            res.append(root.val)
             
-            if node.left:
-                queue.append(node.left)                         # collect left child if it exists
-            if node.right:
-                queue.append(node.right)                        # collect right child if it exists
+            if root.left: queue.append(root.left)               # collect left child if it exists
+            if root.right: queue.append(root.right)             # collect right child if it exists
                 
         return res
 
 
-    def TreeTraversalDFS(self, root):
+    def TreeTraversalDFS(self, root) -> list:
+        """Mirrow of preorder traversal, reverse of postorder traversal (Root -> Right -> Left)"""
+
         if not root: return []
 
-        stack = [root]                                          # create a stack and initialize it by containing the root
-        res = []
+        stack, res = [root], []                                 # create a stack and initialize it by containing the root
         while stack:
-            node = stack.pop()                                  # LIFO  
-            res.append(node.val)
+            root = stack.pop()                                  # LIFO  
+            res.append(root.val)
             
-            if node.left:
-                stack.append(node.left)                         # collect left child if it exists
-            if node.right:
-                stack.append(node.right)                        # collect right child if it exists
+            if root.left: stack.append(root.left)               # collect left child if it exists
+            if root.right: stack.append(root.right)             # collect right child if it exists
                 
         return res
 
-    def TreeTraversalPreorder(self, node):
-        """
-        Collect all elements in tree by preorder traversal algorithm (Root -> Left -> Right)
-        """
-        
-        if not node: return []
 
-        res = []
-        res.append(node.data)                                  # start from the root
-        res += self.TreeTraversalPreorder(node.left)           # collect left child
-        res += self.TreeTraversalPreorder(node.right)          # collect right child
+    def TreeTraversalPreorder(self, root) -> list:
+        """Collect all elements in tree by preorder traversal algorithm (Root -> Left -> Right)"""
 
-        return res
+        return [root.val] + self.TreeTraversalPreorder(root.left) + self.TreeTraversalPreorder(root.right) if root else []
 
     
-    def TreeTraversalPostorder(self, node):
-        """
-        Collect all elements in tree by postorder traversal algorithm (Left -> Right -> Root)
-        """
-        
-        if not node: return []
+    def TreeTraversalPostorder(self, root) -> list:
+        """Collect all elements in tree by postorder traversal algorithm (Left -> Right -> Root)"""
 
-        res = []
-        res += self.TreeTraversalPostorder(node.left)           # go to the leftmost child first
-        res += self.TreeTraversalPostorder(node.right)          # collect right child
-        res.append(node.data)                                   # back to the root
+        return self.TreeTraversalPostorder(root.left) + self.TreeTraversalPostorder(root.right) + [root.val] if root else []
 
-        return res
     
-    
-    def TreeTraversalInorder(self, node):
-        """
-        Collect all elements in tree by inorder traversal algorithm (Left -> Root -> Right)
-        """
-        
-        if not node: return []
+    def TreeTraversalInorder(self, root) -> list:
+        """Collect all elements in tree by inorder traversal algorithm (Left -> Root -> Right)"""
 
-        res = []
-        res += self.TreeTraversalInorder(node.left)             # go to the leftmost child first
-        res.append(node.data)                                   # collect the root
-        res += self.TreeTraversalInorder(node.right)            # collect right child  
-
-        return res
+        return self.TreeTraversalInorder(root.left) + [root.val] + self.TreeTraversalInorder(root.right) if root else []
 
 
-    def LinkedListTraversal(self, head):
+    def LinkedListTraversal(self, head) -> list:
         res = []
         
         while head:
