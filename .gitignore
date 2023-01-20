@@ -5,5 +5,9 @@ leetCodeTest.py
 LeetCode DSA Study Records.xlsx
 ~$LeetCode DSA Study Records.xlsx
 
-# ignore programming cache
+# ignore temporary files
 /__pycache__/* 
+.vscode*
+..ipynb_checkpoints*
+
+
